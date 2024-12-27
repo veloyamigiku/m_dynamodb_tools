@@ -3,7 +3,7 @@ from datetime import datetime
 from datetime import timezone
 import os
 import pickle
-
+from tqdm import tqdm
 
 def get_sts_client(
     aws_access_key_id: str,
@@ -187,3 +187,33 @@ def delete_table(
   yes_no = input()
   if yes_no == 'yes':
     table.delete()
+
+def item_generator(
+  item_csv_path: str
+):
+  item_size = 0
+  with open(item_csv_path, mode='r', encoding='utf-8-sig') as f:
+    f.readline()
+    for _ in f:
+      item_size = item_size + 1
+  
+  with tqdm(total=item_size) as pbar, \
+    open(item_csv_path, mode='r', encoding='utf-8-sig') as f:
+    header_names = f.readline().strip().split(',')
+    header_name_id_map = {header_name: idx for idx, header_name in enumerate(header_names)}
+    for line in f:
+      pbar.update(1)
+      line_parts = line.strip().split(',')
+      id = line_parts[header_name_id_map['id']]
+      datatype = line_parts[header_name_id_map['datatype']]
+      data_col_name = line_parts[header_name_id_map['data_col_name']]
+      data = line_parts[header_name_id_map['data']]
+      if data_col_name == 'data_str':
+        data = str(data)
+      elif data_col_name == 'data_num':
+        data = float(data)
+      yield {
+        'id': id,
+        'datatype': datatype,
+        data_col_name: data,
+      }

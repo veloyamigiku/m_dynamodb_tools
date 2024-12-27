@@ -8,6 +8,7 @@ authors = ["velo.yamigiku <velo.yamigiku@gmail.com>"]
 python = "^3.10"
 python-dotenv = "^1.0.1"
 boto3 = "^1.35.87"
+tqdm = "^4.67.1"
 
 [tool.poetry.dev-dependencies]
 

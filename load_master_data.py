@@ -5,6 +5,7 @@ import os
 
 from utils import create_table
 from utils import init_credential
+from utils import item_generator
 
 def main(args):
 
@@ -30,14 +31,21 @@ def main(args):
   )
 
   # テーブルを作成する。
+  """
   create_table(
     resource=dynamodb_resource,
     table_name=args.table_name
   )
+  """
+
+  for item in item_generator(args.item_csv_path):
+    print(item)
+  print('kokomade')
   
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
   parser.add_argument('--table_name', type=str, default=None)
+  parser.add_argument('--item_csv_path', type=str, default=None)
   args = parser.parse_args()
   main(args=args)

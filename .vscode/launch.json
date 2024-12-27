@@ -12,7 +12,9 @@
             "console": "integratedTerminal",
             "args": [
                 "--table_name",
-                "MTL_20241224_01"
+                "MTL_20241224_01",
+                "--item_csv_path",
+                "../m_dynamodb_tools_io/data_20241224.csv"
             ]
         }
     ]

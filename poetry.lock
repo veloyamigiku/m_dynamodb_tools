@@ -31,6 +31,14 @@ urllib3 = {version = ">=1.25.4,<2.2.0 || >2.2.0,<3", markers = "python_version >
 crt = ["awscrt (==0.22.0)"]
 
 [[package]]
+name = "colorama"
+version = "0.4.6"
+description = "Cross-platform colored terminal text."
+category = "main"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
+
+[[package]]
 name = "jmespath"
 version = "1.0.1"
 description = "JSON Matching Expressions"
@@ -83,6 +91,24 @@ optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 
 [[package]]
+name = "tqdm"
+version = "4.67.1"
+description = "Fast, Extensible Progress Meter"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+colorama = {version = "*", markers = "platform_system == \"Windows\""}
+
+[package.extras]
+dev = ["pytest (>=6)", "pytest-cov", "pytest-timeout", "pytest-asyncio (>=0.24)", "nbval"]
+discord = ["requests"]
+slack = ["slack-sdk"]
+telegram = ["requests"]
+notebook = ["ipywidgets (>=6)"]
+
+[[package]]
 name = "urllib3"
 version = "2.3.0"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -99,14 +125,16 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "b82c53650d06fd4b74d1493268f6f44771bc8702e2fc6f13b205b9571b04a884"
+content-hash = "574c398705121c0309bef677a663ed4c7f90435d74b27d6b6c9edfc5478c55d8"
 
 [metadata.files]
 boto3 = []
 botocore = []
+colorama = []
 jmespath = []
 python-dateutil = []
 python-dotenv = []
 s3transfer = []
 six = []
+tqdm = []
 urllib3 = []
